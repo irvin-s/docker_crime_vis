@@ -1,12 +1,19 @@
 services:
-  crimevis:
+
+  flask:
+      build: .
+      container_name: flask_app
+      expose:
+        - "5000"
+
+  apache:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "80:80"
     volumes:
-      - ./crime_occur_vis:/var/www/html
+      - ./crime_occur_vis:/var/www/html #Local directory to container directory
     environment:
       - APACHE_RUN_USER=www-data
       - APACHE_RUN_GROUP=www-data
