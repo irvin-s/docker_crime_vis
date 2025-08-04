@@ -26,7 +26,7 @@ EXPOSE 5000
 CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app"]
 
 #Expose port 80 for Apache
-EXPOSE 80
+#EXPOSE 80
 
 #Start Apache in the foreground
-CMD ["apachectl", "-D", "FOREGROUND"]
+#CMD ["apachectl", "-D", "FOREGROUND"]
