@@ -20,13 +20,14 @@ RUN mv /tmp/crime_vis/* /var/www/html/
 RUN pip install --no-cache-dir -r /var/www/html/requirements.txt
 
 #Expose port 5000 for Gunicorn
-EXPOSE 5000
+#EXPOSE 5000
 
 #Gunicorn: runs the app with 4 workers on port 5000
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app"]
+#CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:5000"]
+#CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "crimevis:crimevis"]
 
 #Expose port 80 for Apache
-#EXPOSE 80
+EXPOSE 80
 
 #Start Apache in the foreground
-#CMD ["apachectl", "-D", "FOREGROUND"]
+CMD ["apachectl", "-D", "FOREGROUND"]
