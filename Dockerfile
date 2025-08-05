@@ -19,15 +19,16 @@ RUN mv /tmp/crime_vis/* /var/www/html/
 #Install Python dependencies
 RUN pip install --no-cache-dir -r /var/www/html/requirements.txt
 
-#Expose port 5000 for Gunicorn
-#EXPOSE 5000
+#Work directory for the application
+WORKDIR /var/www/html/api/
 
-#Gunicorn: runs the app with 4 workers on port 5000
-#CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:5000"]
-#CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "crimevis:crimevis"]
+# Copy startup script
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
 
-#Expose port 80 for Apache
+#Expose port 80 for http and 8000 for Gunicorn
 EXPOSE 80
+EXPOSE 8000
 
-#Start Apache in the foreground
-CMD ["apachectl", "-D", "FOREGROUND"]
+# Start both services
+CMD ["/start.sh"]

@@ -1,10 +1,10 @@
 services:
 
-  #flask:
-  #    build: .
-  #    container_name: flask_app
-  #    expose:
-  #      - "5000"
+  flask:
+      build: .
+      container_name: flask_app
+      ports:
+        - "8000:8000"
 
   apache:
     build:
@@ -12,8 +12,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "80:80"
-    volumes:
-      - /var/www/html #Local directory to container directory
+    #volumes:
+    #  - ./crime_occur_vis:/var/www/html #Local directory to container directory
     environment:
       - APACHE_RUN_USER=www-data
       - APACHE_RUN_GROUP=www-data
