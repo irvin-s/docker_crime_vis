@@ -8,7 +8,7 @@ FROM python:3.11-slim-bullseye
 RUN apt update
 RUN apt install -y apache2
 RUN apt install -y git
-RUN curl https://install.duckdb.org | sh
+#RUN curl https://install.duckdb.org | sh
 
 #Cloning the git repository for Crimevis
 RUN git clone https://github.com/irvin-s/crime_occur_vis.git /tmp/crime_vis
